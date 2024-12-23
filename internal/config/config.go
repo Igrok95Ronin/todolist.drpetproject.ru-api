@@ -1,8 +1,8 @@
 package config
 
 import (
+	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/logging"
 	"github.com/ilyakaznacheev/cleanenv"
-	"log"
 	"sync"
 )
 
@@ -17,13 +17,14 @@ var instance *Config
 var once sync.Once
 
 func GetConfig() *Config {
+	logger := logging.GetLogger()
 	once.Do(func() {
 		instance = &Config{}
 
 		if err := cleanenv.ReadConfig("./config.yml", instance); err != nil {
 			help, _ := cleanenv.GetDescription(instance, nil)
-			log.Print(help)
-			log.Fatal(err)
+			logger.Info(help)
+			logger.Fatal(err)
 		}
 	})
 

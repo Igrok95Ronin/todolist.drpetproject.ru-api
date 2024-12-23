@@ -9,6 +9,6 @@ import (
 // Получения всех записей
 func (h *handler) getAllRecords(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintf(w, "getAllRecords")
-	fmt.Fprintf(w, h.cfg.Port)
+	fmt.Fprintf(w, "%s", h.cfg.Port)
 
 }
