@@ -1,0 +1,24 @@
+services:
+  dbTodolist:
+    restart: always
+    image: postgres:15.2
+    environment:
+      POSTGRES_USER: todolistSuperUser
+      POSTGRES_PASSWORD: todolistSuperPassword
+      POSTGRES_DB: todolistDB
+    ports:
+      - 5433:5432
+    volumes:
+      - pgdatatodolist:/var/lib/postgresql/data
+      - ./migrations/todolist/createtable.sql:/docker-entrypoint-initdb.d/createtable.sql
+      - ./migrations/todolist/inserttable.sql:/docker-entrypoint-initdb.d/inserttable.sql
+    networks:
+      - drpetproject-network
+
+volumes:
+  pgdatatodolist:
+    name: pgdatatodolist
+
+networks:
+  drpetproject-network:
+    driver: bridge
