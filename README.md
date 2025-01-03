@@ -1,4 +1,4 @@
-1. Реализовать handler для получения всех записей, метод GET getallrecords
+1. Реализовать handler для получения всех записей, метод GET allnotes
 2. Возможность добавлять записи, метод POST addpost
 3. Редактировать запись, метод PUT editentry
 4. Удалить запись, метод DELETE deleteentry

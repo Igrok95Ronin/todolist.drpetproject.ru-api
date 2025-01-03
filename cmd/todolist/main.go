@@ -5,18 +5,27 @@ import (
 	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes"
 	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
+	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
+
+	db := routes.InitDB()
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatalf("Failed to get database handle: %v", err)
+	}
+	defer sqlDB.Close()
+
 	router := httprouter.New()
 
 	logger := logging.GetLogger()
 
 	cfg := config.GetConfig() // Читаем конфигурацию приложения
 
-	handler := routes.NewHandler(cfg, logger)
+	handler := routes.NewHandler(cfg, logger, db)
 	handler.Routes(router)
 
 	start(router, cfg, logger)
@@ -34,7 +43,7 @@ func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger
 		IdleTimeout:  wri,
 	}
 
-	logger.Info("Server started ...")
+	logger.Infof("Server started %v", cfg.Port)
 	logger.Fatal(server.ListenAndServe())
 
 }

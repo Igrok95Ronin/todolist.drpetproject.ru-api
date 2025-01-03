@@ -5,6 +5,7 @@ import (
 	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/handlers"
 	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/logging"
 	"github.com/julienschmidt/httprouter"
+	"gorm.io/gorm"
 )
 
 var _ handlers.Handler = &handler{}
@@ -12,15 +13,17 @@ var _ handlers.Handler = &handler{}
 type handler struct {
 	cfg    *config.Config
 	logger *logging.Logger
+	db     *gorm.DB
 }
 
-func NewHandler(cfg *config.Config, logger *logging.Logger) handlers.Handler {
+func NewHandler(cfg *config.Config, logger *logging.Logger, db *gorm.DB) handlers.Handler {
 	return &handler{
 		cfg:    cfg,
 		logger: logger,
+		db:     db,
 	}
 }
 
 func (h *handler) Routes(router *httprouter.Router) {
-	router.GET("/getallrecords", h.getAllRecords) // Получения всех записей
+	router.GET("/", h.allNotes) // Получения всех записей
 }
