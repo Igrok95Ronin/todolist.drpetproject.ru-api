@@ -1,0 +1,45 @@
+package routes
+
+import (
+	"encoding/json"
+	"fmt"
+	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/httperror"
+	"github.com/julienschmidt/httprouter"
+	"net/http"
+	"strconv"
+)
+
+type ModifiedEntry struct {
+	ModEntry string `json:"modEntry"`
+}
+
+// Редактировать запись
+func (h *handler) editEntry(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	var modifiedEntry ModifiedEntry
+
+	if err := json.NewDecoder(r.Body).Decode(&modifiedEntry); err != nil {
+		// Если произошла ошибка декодирования, возвращаем клиенту ошибку с кодом 400
+		httperror.WriteJSONError(w, "Ошибка декодирования в JSON", err, http.StatusBadRequest)
+		// Логируем ошибку
+		h.logger.Errorf("Ошибка декодирования в JSON: %s", err)
+		return
+	}
+
+	id, _ := strconv.Atoi(ps.ByName("id"))
+
+	w.WriteHeader(http.StatusOK)
+
+	if err := editEntryDB(h, w, modifiedEntry.ModEntry, id); err != nil {
+		h.logger.Errorf("Ошибка при обновлении записи по id: %v %s", id, err)
+	}
+}
+
+func editEntryDB(h *handler, w http.ResponseWriter, editEntry string, id int) error {
+
+	if err := h.db.Model(&AllNotes{}).Where("id = ?", id).Update("note", editEntry).Error; err != nil {
+		httperror.WriteJSONError(w, "Ошибка при обновления записи в БД", fmt.Errorf(""), http.StatusInternalServerError)
+		return err
+	}
+
+	return nil
+}
