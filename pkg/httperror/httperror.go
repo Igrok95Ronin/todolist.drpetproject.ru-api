@@ -2,6 +2,7 @@ package httperror
 
 import (
 	"encoding/json"
+	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/logging"
 	"net/http"
 )
 
@@ -15,6 +16,7 @@ type ErrorResponse struct {
 
 // Функция для возврата ошибок в формате JSON
 func WriteJSONError(w http.ResponseWriter, message string, err error, code int) {
+	logger := logging.GetLogger()
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 
@@ -28,5 +30,7 @@ func WriteJSONError(w http.ResponseWriter, message string, err error, code int) 
 		errorResponse.Error = err.Error() // возвращаем текст ошибки
 	}
 
-	json.NewEncoder(w).Encode(errorResponse)
+	if err = json.NewEncoder(w).Encode(errorResponse); err != nil {
+		logger.Error("Ошибка при кодировании JSON-ответа: ", err)
+	}
 }
