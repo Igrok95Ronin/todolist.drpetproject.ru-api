@@ -15,6 +15,16 @@ services:
     networks:
       - drpetproject-network
 
+#  apiTodolist:
+#    image: todolistdrpetproject:v1.0
+#    container_name: todolist
+#    ports:
+#      - 8080:8080
+#    networks:
+#      drpetproject-network:
+#    depends_on:
+#      - dbTodolist
+
 volumes:
   pgdatatodolist:
     name: pgdatatodolist
