@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/httperror"
 	"github.com/julienschmidt/httprouter"
+	"html"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 type ModifiedEntry struct {
@@ -26,6 +28,11 @@ func (h *handler) editEntry(w http.ResponseWriter, r *http.Request, ps httproute
 	}
 
 	id, _ := strconv.Atoi(ps.ByName("id"))
+
+	modifiedEntry.ModEntry = html.EscapeString(strings.TrimSpace(modifiedEntry.ModEntry))
+	if modifiedEntry.ModEntry == "" {
+		return
+	}
 
 	w.WriteHeader(http.StatusOK)
 

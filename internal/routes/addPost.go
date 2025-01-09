@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/pkg/httperror"
 	"github.com/julienschmidt/httprouter"
+	"html"
 	"net/http"
+	"strings"
 )
 
 type Note struct {
@@ -21,6 +23,11 @@ func (h *handler) addPost(w http.ResponseWriter, r *http.Request, _ httprouter.P
 		httperror.WriteJSONError(w, "Ошибка декодирования в JSON", err, http.StatusBadRequest)
 		// Логируем ошибку
 		h.logger.Errorf("Ошибка декодирования в JSON: %s", err)
+		return
+	}
+
+	note.Note = html.EscapeString(strings.TrimSpace(note.Note))
+	if note.Note == "" {
 		return
 	}
 

@@ -23,5 +23,4 @@ func (h *handler) allNotes(w http.ResponseWriter, r *http.Request, _ httprouter.
 		h.logger.Error(err)
 		httperror.WriteJSONError(w, "Ошибка при отправке данных клиенту", err, http.StatusInternalServerError)
 	}
-
 }

@@ -25,7 +25,8 @@ func NewHandler(cfg *config.Config, logger *logging.Logger, db *gorm.DB) handler
 }
 
 func (h *handler) Routes(router *httprouter.Router) {
-	router.GET("/", h.allNotes)               // Получения всех записей
-	router.POST("/addpost", h.addPost)        // Добавить пост
-	router.PUT("/editentry/:id", h.editEntry) // Редактировать запись
+	router.GET("/", h.allNotes)                      // Получения всех записей
+	router.POST("/addpost", h.addPost)               // Добавить пост
+	router.PUT("/editentry/:id", h.editEntry)        // Редактировать запись
+	router.DELETE("/deleteentry/:id", h.deleteEntry) // Удалить запись
 }
