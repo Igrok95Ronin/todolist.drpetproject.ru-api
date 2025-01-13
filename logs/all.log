@@ -348,3 +348,7 @@
 [31mERRO[0m[2025-01-13T16:28:43+03:00]markCompletedEntry.go:40 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).markCompletedEntry() Ошибка обновления записи с ID 11: failed to encode args[0]: unable to encode routes.Check{Check:false} into binary format for bool (OID 16): cannot find encode plan 
 [31mERRO[0m[2025-01-13T16:29:08+03:00]markCompletedEntry.go:40 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).markCompletedEntry() Ошибка обновления записи с ID 11: failed to encode args[0]: unable to encode routes.Check{Check:false} into binary format for bool (OID 16): cannot find encode plan 
 [36mINFO[0m[2025-01-13T16:29:37+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-13T16:30:47+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-13T16:37:26+03:00]main.go:46 main.start() Server started :8080                         
+[31mERRO[0m[2025-01-13T16:37:44+03:00]DeleteAllEntries.go:11 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).DeleteAllEntries() Ошибка при удалении всех записей: WHERE conditions required 
+[36mINFO[0m[2025-01-13T16:39:04+03:00]main.go:46 main.start() Server started :8080                         

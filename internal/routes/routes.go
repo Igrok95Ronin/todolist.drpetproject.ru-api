@@ -30,7 +30,7 @@ func (h *handler) Routes(router *httprouter.Router) {
 	router.PUT("/editentry/:id", h.editEntry)                   // Редактировать запись
 	router.DELETE("/deleteentry/:id", h.deleteEntry)            // Удалить запись
 	router.PUT("/markcompletedentry/:id", h.markCompletedEntry) // Отметить выполненную запись
-	//router.DELETE("/deleteallentries", DeleteAllEntries)          // DELETE all notes
+	router.DELETE("/deleteallentries", h.DeleteAllEntries)      // Удалить все записи
 	//router.DELETE("/deleteallmarkedentries", DeleteAllMarkedEntries) // DELETE all marked notes
 
 }
