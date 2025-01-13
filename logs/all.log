@@ -337,3 +337,14 @@
 [36mINFO[0m[2025-01-09T22:18:05+03:00]main.go:46 main.start() Server started :8080                         
 [36mINFO[0m[2025-01-09T22:19:57+03:00]main.go:46 main.start() Server started :8080                         
 [36mINFO[0m[2025-01-09T22:20:05+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-09T22:22:04+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-13T16:16:03+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-13T16:17:34+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-13T16:24:10+03:00]main.go:46 main.start() Server started :8080                         
+[31mERRO[0m[2025-01-13T16:24:14+03:00]markCompletedEntry.go:24 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).markCompletedEntry() Ошибка обновления записи с ID 11: ERROR: column "completed = ?" of relation "all_notes" does not exist (SQLSTATE 42703) 
+[36mINFO[0m[2025-01-13T16:26:07+03:00]main.go:46 main.start() Server started :8080                         
+[36mINFO[0m[2025-01-13T16:28:28+03:00]main.go:46 main.start() Server started :8080                         
+[31mERRO[0m[2025-01-13T16:28:30+03:00]markCompletedEntry.go:25 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).markCompletedEntry() Ошибка декодирования в JSON: json: cannot unmarshal string into Go struct field Check.check of type bool 
+[31mERRO[0m[2025-01-13T16:28:43+03:00]markCompletedEntry.go:40 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).markCompletedEntry() Ошибка обновления записи с ID 11: failed to encode args[0]: unable to encode routes.Check{Check:false} into binary format for bool (OID 16): cannot find encode plan 
+[31mERRO[0m[2025-01-13T16:29:08+03:00]markCompletedEntry.go:40 github.com/Igrok95Ronin/todolist.drpetproject.ru-golang.git/internal/routes.(*handler).markCompletedEntry() Ошибка обновления записи с ID 11: failed to encode args[0]: unable to encode routes.Check{Check:false} into binary format for bool (OID 16): cannot find encode plan 
+[36mINFO[0m[2025-01-13T16:29:37+03:00]main.go:46 main.start() Server started :8080                         
