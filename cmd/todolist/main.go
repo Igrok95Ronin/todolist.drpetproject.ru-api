@@ -28,11 +28,14 @@ func main() {
 	handler := routes.NewHandler(cfg, logger, db)
 	handler.Routes(router)
 
-	start(router, cfg, logger)
+	// Обработка cors
+	corsHandler := routes.CorsSettings().Handler(router)
+
+	start(corsHandler, cfg, logger)
 }
 
 // Функция start запускает приложение
-func start(router *httprouter.Router, cfg *config.Config, logger *logging.Logger) {
+func start(router http.Handler, cfg *config.Config, logger *logging.Logger) {
 
 	const wri time.Duration = 15 * time.Second
 	server := &http.Server{
