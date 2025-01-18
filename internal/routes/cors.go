@@ -15,9 +15,10 @@ func CorsSettings() *cors.Cors {
 			http.MethodPatch,
 			http.MethodDelete,
 			http.MethodPut,
+			http.MethodOptions,
 		},
 		// Указываем разрешенные источники домен
-		AllowedOrigins: []string{"*"}, //"http://localhost:3000",
+		AllowedOrigins: []string{"https://todolist.drpetproject.ru"}, //"http://localhost:3000",
 		//"https://sites.jquery.link",
 		//"https://cvetigrozny.ru",
 
